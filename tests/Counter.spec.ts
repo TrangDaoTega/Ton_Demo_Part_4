@@ -1,6 +1,6 @@
 import { Blockchain, SandboxContract, TreasuryContract } from '@ton/sandbox';
 import { Cell, toNano } from '@ton/core';
-import { Counter } from '../wrappers/Counter';
+import Counter from '../wrappers/Counter';
 import '@ton/test-utils';
 import { compile } from '@ton/blueprint';
 
@@ -22,7 +22,7 @@ describe('Counter', () => {
 
         deployer = await blockchain.treasury('deployer');
 
-        const deployResult = await counter.sendDeploy(deployer.getSender(), toNano('0.05'));
+        const deployResult = await counter.sendDeploy(deployer.getSender());
 
         expect(deployResult.transactions).toHaveTransaction({
             from: deployer.address,
