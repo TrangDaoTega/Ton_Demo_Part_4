@@ -18,7 +18,9 @@ describe('Counter', () => {
     beforeEach(async () => {
         blockchain = await Blockchain.create();
 
-        counter = blockchain.openContract(Counter.createFromConfig({}, code));
+        const initialCounterValue = 0; // or any initial value you want for testing
+        counter = blockchain.openContract(Counter.createForDeploy(code, initialCounterValue));
+
 
         deployer = await blockchain.treasury('deployer');
 
